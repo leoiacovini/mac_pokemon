@@ -11,10 +11,21 @@ public class Pokemon {
 	boolean isAlive;
 	boolean isActive;
 	
-	public void atacar(Integer ataqIndex) {
+	public Pokemon(){
+		this.ID = 1;
+		this.nome = "Bulbasaur";
+		this.HP = 140;
+		this.HPMAX = 152;
+		this.tipo = Tipos.Grass;
+		ataques = new Ataque[4];
+		ataques[0] = new Ataque(AtackType.Tackle);
+		ataques[1] = new Ataque(AtackType.LeechSeeds);
+		ataques[2] = new Ataque(AtackType.RazorLeaf);
+		ataques[3] = new Ataque(AtackType.SeedBomb);
+	}
+	public void atacar(Integer ataqIndex, Pokemon oponente) {
 		
 		// Pegar pokemon oponente
-		Pokemon oponente = new Pokemon();
 		// Caclular Dano
 		Integer max = ataques[ataqIndex].maxDamage;
 		Integer min = ataques[ataqIndex].minDamage;
@@ -42,6 +53,10 @@ public class Pokemon {
 			HP = HPMAX;
 		}
 		
+	}
+	
+	public int getPercentageLifePoints() {
+		return (int)(((double)this.HP/this.HPMAX) * 100);
 	}
 	
 }

@@ -26,12 +26,13 @@ public class Battle extends JFrame {
 	private JButton btnAtacar;
 	private JButton btnTrocarPok;
 	private JButton btnRun;
-	private JProgressBar progressBar;
-	private JProgressBar progressBar_1;
-
+	public JProgressBar jogadorLife;
+	public JProgressBar AILife;
+	public JLabel lblMeuPokemon;
+	public JLabel lblAIPokemon;
 	
-	private Treinador jogador;
-	private AIController AI;
+	public Treinador jogador;
+	public AIController AI;
 	
 	/**
 	 * Launch the application.
@@ -53,6 +54,7 @@ public class Battle extends JFrame {
 	 * Create the frame.
 	 */
 	public Battle() {
+		setUpBattle();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -60,29 +62,30 @@ public class Battle extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("", "[][][][][][]", "[][][][][][][][][]"));
 		
-		JLabel lblAiPokemin = new JLabel("AI Pokemon");
-		contentPane.add(lblAiPokemin, "cell 5 0");
+		lblAIPokemon = new JLabel(AI.getPokemonAtivo().nome);
+		contentPane.add(lblAIPokemon, "cell 5 0");
 		
-		progressBar_1 = new JProgressBar();
-		progressBar_1.setStringPainted(true);
-		progressBar_1.setValue(100);
-		contentPane.add(progressBar_1, "cell 5 1");
+		AILife = new JProgressBar();
+		AILife.setStringPainted(true);
+		AILife.setValue(100);
+		contentPane.add(AILife, "cell 5 1");
 		
 		btnAtacar = new JButton("Atacar");
 		btnAtacar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AtaquesDialog ataquesDiag = new AtaquesDialog(jogador.pokemons[0].ataques);
-				ataquesDiag.show();
+				AtaquesDialog ataquesDiag = new AtaquesDialog(jogador.getPokemonAtivo().ataques);
+				ataquesDiag.mainBattle = Battle.this;
+				ataquesDiag.setVisible(true);
 			}
 		});
 		
-		JLabel lblMeuPokemon = new JLabel("Meu Pokemon");
+		lblMeuPokemon = new JLabel(jogador.getPokemonAtivo().nome);
 		contentPane.add(lblMeuPokemon, "cell 0 4");
 		
-		progressBar = new JProgressBar();
-		progressBar.setStringPainted(true);
-		progressBar.setValue(100);
-		contentPane.add(progressBar, "cell 0 5");
+		jogadorLife = new JProgressBar();
+		jogadorLife.setStringPainted(true);
+		jogadorLife.setValue(100);
+		contentPane.add(jogadorLife, "cell 0 5");
 		contentPane.add(btnAtacar, "cell 0 7");
 		
 		btnItem = new JButton("Item");
@@ -91,12 +94,29 @@ public class Battle extends JFrame {
 		btnTrocarPok = new JButton("Trocar Pok");
 		contentPane.add(btnTrocarPok, "cell 0 8");
 		
+		btnTrocarPok.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Mostra lista de pokemons
+			}
+		});
+		
 		btnRun = new JButton("Run");
 		contentPane.add(btnRun, "cell 2 8");
 	}
 	
 	private void setUpBattle() {
-		
+		jogador = new Treinador("Alfredo");
+		AI = new AIController("AKJSHAJK");
 	}
 
+	private void updateBattle() {
+		lblMeuPokemon.setText(jogador.getPokemonAtivo().nome);
+		lblAIPokemon.setText(AI.getPokemonAtivo().nome);
+		int HealthPoint = jogador.getPokemonAtivo().getPercentageLifePoints();
+		jogadorLife.setValue(HealthPoint);
+		HealthPoint = AI.getPokemonAtivo().getPercentageLifePoints();
+		AILife.setValue(HealthPoint);
+	}
+	
 }

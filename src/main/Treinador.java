@@ -28,12 +28,12 @@ public class Treinador {
 		// Termina a batalha
 	}
 	
-	public void atacarWithPokemon(Integer ataqIndex) {
+	public void atacarWithPokemon(Integer ataqIndex, Pokemon oponente) {
 		// Mostra ataques do pokemon atual
 		// -> Passa a bola pro Pokemon
 		// Escolhe ataque e efetua
 		
-		pokemons[0].atacar(ataqIndex);
+		pokemons[0].atacar(ataqIndex, oponente);
 		
 	}
 	
@@ -56,6 +56,11 @@ public class Treinador {
 		pokemons[pokIndex].isActive = true;
 		pokemons[pokIndex] = auxPok;
 		
+	}
+	
+	public Pokemon getPokemonAtivo()
+	{
+		return this.pokemons[0];
 	}
 	
 }

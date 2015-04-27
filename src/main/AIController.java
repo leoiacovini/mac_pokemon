@@ -15,7 +15,7 @@ public class AIController extends Treinador {
 		if (rand < 0.7)
 		{
 			// atacar
-			atacarWithPokemon(gerador.nextInt(4));
+			//atacarWithPokemon(gerador.nextInt(4));
 		} else if (rand < 0.9) {
 			// usar item
 			

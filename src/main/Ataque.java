@@ -9,4 +9,40 @@ public class Ataque {
 	Integer minDamage;
 	Integer prioridade;	
 	
+	public Ataque(AtackType typeAtk)
+	{
+		switch(typeAtk)
+		{
+		case Growl:
+			setValues("Growl", Tipos.Normal, 5, 10, 20);
+			break;
+		case LeechSeeds:
+			setValues("LeechSeeds", Tipos.Normal, 5, 10, 20);
+			break;
+		case RazorLeaf:
+			setValues("RazorLeaf", Tipos.Normal, 5, 10, 20);
+			break;
+		case SeedBomb:
+			setValues("SeedBomb", Tipos.Normal, 5, 10, 20);
+			break;
+		case Tackle:
+			setValues("Tackle", Tipos.Normal, 5, 10, 20);
+			break;
+		case VineWhip:
+			setValues("VineWhip", Tipos.Normal, 5, 10, 20);
+			break;
+		default:
+			break;
+			
+		}
+	}
+	
+	private void setValues(String nome, Tipos tipo, Integer prioridade, Integer minDmg, Integer maxDmg)
+	{
+		this.nome = nome;
+		this.tipo = tipo;
+		this.prioridade = prioridade;
+		this.maxDamage = maxDmg;
+		this.minDamage = minDmg;
+	}
 }
