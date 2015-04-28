@@ -32,6 +32,7 @@ public class AtaquesDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public AtaquesDialog(final Ataque ataques[]) {
+		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 340, 450, 60);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
@@ -80,7 +81,7 @@ public class AtaquesDialog extends JDialog {
 			mainBattle.jogador.atacarWithPokemon(atkIndex, mainBattle.AI.getPokemonAtivo());
 			int HealthPoint = (int)(((double)mainBattle.AI.getPokemonAtivo().HP/mainBattle.AI.getPokemonAtivo().HPMAX) * 100);
 			mainBattle.AILife.setValue(HealthPoint);
-			AtaquesDialog.this.setVisible(false);
+			AtaquesDialog.this.dispose();
 		}
 	}
 	

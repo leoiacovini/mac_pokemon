@@ -98,6 +98,8 @@ public class Battle extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Mostra lista de pokemons
+				TrocarPokemon trocarFrame = new TrocarPokemon(Battle.this, Battle.this.jogador);
+				trocarFrame.setVisible(true);
 			}
 		});
 		

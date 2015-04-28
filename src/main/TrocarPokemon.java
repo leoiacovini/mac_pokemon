@@ -23,6 +23,7 @@ public class TrocarPokemon extends JFrame {
 	private JPanel panel;
 
 	public Treinador jogador;
+	public Battle mainBattle;
 	
 	/**
 	 * Launch the application.
@@ -31,7 +32,7 @@ public class TrocarPokemon extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TrocarPokemon frame = new TrocarPokemon();
+					TrocarPokemon frame = new TrocarPokemon(null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,18 +44,17 @@ public class TrocarPokemon extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TrocarPokemon() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public TrocarPokemon(Battle battle, Treinador trainer) {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 510);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		this.jogador = trainer;
+		this.mainBattle = battle;
 		generatePokemons();
 		// for cada pokemon -> criar quadrado -> attr valores -> add no panel + 30px Y
-		
-		
 	}
 	
 	private void  generatePokemons() {

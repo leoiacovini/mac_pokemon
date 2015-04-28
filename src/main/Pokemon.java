@@ -17,6 +17,8 @@ public class Pokemon {
 		this.HP = 140;
 		this.HPMAX = 152;
 		this.tipo = Tipos.Grass;
+		this.isAlive = true;
+		this.isActive = false;
 		ataques = new Ataque[4];
 		ataques[0] = new Ataque(AtackType.Tackle);
 		ataques[1] = new Ataque(AtackType.LeechSeeds);
