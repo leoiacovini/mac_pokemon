@@ -11,9 +11,9 @@ public class Pokemon {
 	boolean isAlive;
 	boolean isActive;
 	
-	public Pokemon(){
+	public Pokemon(int num){
 		this.ID = 1;
-		this.nome = "Bulbasaur";
+		this.nome = "Bulbasaur" + num;
 		this.HP = 140;
 		this.HPMAX = 152;
 		this.tipo = Tipos.Grass;

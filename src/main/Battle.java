@@ -18,9 +18,15 @@ import javax.swing.JProgressBar;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
+import java.awt.Font;
 
 public class Battle extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JButton btnItem;
 	private JButton btnAtacar;
@@ -33,6 +39,7 @@ public class Battle extends JFrame {
 	
 	public Treinador jogador;
 	public AIController AI;
+	public JTextPane textPane;
 	
 	/**
 	 * Launch the application.
@@ -60,7 +67,7 @@ public class Battle extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[][][][][][]", "[][][][][][][][][]"));
+		contentPane.setLayout(new MigLayout("", "[][][][][][grow]", "[][][][][][][grow][][]"));
 		
 		lblAIPokemon = new JLabel(AI.getPokemonAtivo().nome);
 		contentPane.add(lblAIPokemon, "cell 5 0");
@@ -86,6 +93,11 @@ public class Battle extends JFrame {
 		jogadorLife.setStringPainted(true);
 		jogadorLife.setValue(100);
 		contentPane.add(jogadorLife, "cell 0 5");
+		
+		textPane = new JTextPane();
+		textPane.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
+		textPane.setEditable(false);
+		contentPane.add(textPane, "cell 3 5 3 4,grow");
 		contentPane.add(btnAtacar, "cell 0 7");
 		
 		btnItem = new JButton("Item");
@@ -112,7 +124,7 @@ public class Battle extends JFrame {
 		AI = new AIController("AKJSHAJK");
 	}
 
-	private void updateBattle() {
+	public void updateBattle() {
 		lblMeuPokemon.setText(jogador.getPokemonAtivo().nome);
 		lblAIPokemon.setText(AI.getPokemonAtivo().nome);
 		int HealthPoint = jogador.getPokemonAtivo().getPercentageLifePoints();

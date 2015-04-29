@@ -81,6 +81,7 @@ public class AtaquesDialog extends JDialog {
 			mainBattle.jogador.atacarWithPokemon(atkIndex, mainBattle.AI.getPokemonAtivo());
 			int HealthPoint = (int)(((double)mainBattle.AI.getPokemonAtivo().HP/mainBattle.AI.getPokemonAtivo().HPMAX) * 100);
 			mainBattle.AILife.setValue(HealthPoint);
+			mainBattle.textPane.setText( mainBattle.textPane.getText() + "\nVocê usou " + mainBattle.jogador.getPokemonAtivo().ataques[atkIndex].nome);
 			AtaquesDialog.this.dispose();
 		}
 	}

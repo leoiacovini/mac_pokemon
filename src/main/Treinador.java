@@ -15,7 +15,7 @@ public class Treinador {
 		
 		pokemons = new Pokemon[6];
 		for (int i = 0; i < 6; i++) {
-			pokemons[i] = new Pokemon();
+			pokemons[i] = new Pokemon(i);
 		}
 		
 		itens = new Item[5];

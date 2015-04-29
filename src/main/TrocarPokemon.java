@@ -62,7 +62,10 @@ public class TrocarPokemon extends JFrame {
 		for (int i = 0; i < 6; i++)
 		{
 			panel = new JPanel();
-			if (jogador.pokemons[i].isAlive) panel.setBackground(Color.ORANGE);
+			if (jogador.pokemons[i].isAlive){
+				panel.setBackground(Color.ORANGE);
+				if (i == 0) panel.setBackground(Color.BLUE); 
+			}
 			else panel.setBackground(Color.gray);
 			panel.setBounds(6, y, 438, 69);
 			panel.addMouseListener(new selectPokemon(i));
@@ -89,6 +92,9 @@ public class TrocarPokemon extends JFrame {
 		public void mouseClicked(MouseEvent e) {
 			
 			System.out.println("ETA" + pok);
+			TrocarPokemon.this.mainBattle.jogador.trocarPokemon(pok);
+			TrocarPokemon.this.mainBattle.updateBattle();
+			TrocarPokemon.this.dispose();
 		}
 
 		@Override
