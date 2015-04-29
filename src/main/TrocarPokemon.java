@@ -115,12 +115,20 @@ public class TrocarPokemon extends JFrame {
 		@Override
 		public void mouseEntered(MouseEvent e) {
 			float[] HSBColor = new float[3];
-			Color.RGBtoHSB(198, 198, 198, HSBColor);
+			//Color.RGBtoHSB(198, 198, 198, HSBColor);
+			if(pok == 0)
+				Color.RGBtoHSB(140, 140, 255, HSBColor);
+			else {
+				if(jogador.pokemons[pok].isAlive)
+					Color.RGBtoHSB(255, 230, 140, HSBColor);
+				else
+					Color.RGBtoHSB(198, 198, 198, HSBColor);				
+			}
 			
-			if(jogador.pokemons[pok].isAlive) panel.setBackground(Color.getHSBColor(47, 45, 100));
-			//else panel.setBackground(Color.getHSBColor(Color.RGBtoHSB(198, 198, 198, null)[0], Color.RGBtoHSB(198, 198, 198, null)[1], Color.RGBtoHSB(198, 198, 198, null)[2]));
-			else panel.setBackground(Color.getHSBColor(HSBColor[0], HSBColor[1], HSBColor[2]));
 			
+			
+				
+			panel.setBackground(Color.getHSBColor(HSBColor[0], HSBColor[1], HSBColor[2]));
 			
 		}
 
@@ -128,6 +136,9 @@ public class TrocarPokemon extends JFrame {
 		public void mouseExited(MouseEvent e) {
 			if(jogador.pokemons[pok].isAlive) panel.setBackground(Color.ORANGE);
 			else panel.setBackground(Color.gray);
+			
+			if(pok == 0)
+				panel.setBackground(Color.BLUE);
 			
 		}
 	}

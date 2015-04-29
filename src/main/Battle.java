@@ -97,6 +97,7 @@ public class Battle extends JFrame {
 		textPane = new JTextPane();
 		textPane.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		textPane.setEditable(false);
+		textPane.setBackground(contentPane.getBackground());
 		contentPane.add(textPane, "cell 3 5 3 4,grow");
 		contentPane.add(btnAtacar, "cell 0 7");
 		
