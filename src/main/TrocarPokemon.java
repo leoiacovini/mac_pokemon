@@ -54,7 +54,6 @@ public class TrocarPokemon extends JFrame {
 		this.jogador = trainer;
 		this.mainBattle = battle;
 		generatePokemons();
-		// for cada pokemon -> criar quadrado -> attr valores -> add no panel + 30px Y
 	}
 	
 	private void  generatePokemons() {
