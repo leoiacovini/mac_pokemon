@@ -68,12 +68,13 @@ public class TrocarPokemon extends JFrame {
 			}
 			else panel.setBackground(Color.gray);
 			panel.setBounds(6, y, 438, 69);
-			panel.addMouseListener(new selectPokemon(i));
+			panel.addMouseListener(new selectPokemon(i, panel));
 			
 			contentPane.add(panel);
-			panel.setLayout(new MigLayout("", "[37px][61px]", "[16px][]"));
+			panel.setLayout(new MigLayout("", "[37px][61px]", "[16px][]"));			
 			JLabel lblNome = new JLabel(jogador.pokemons[i].nome);
 			panel.add(lblNome, "cell 1 0,alignx left,aligny top");
+			
 			JLabel lblVidavida = new JLabel( jogador.pokemons[i].HP +  "/" + jogador.pokemons[i].HPMAX);
 			panel.add(lblVidavida, "cell 1 1,alignx left,aligny top");
 			y += 79;
@@ -83,9 +84,11 @@ public class TrocarPokemon extends JFrame {
 	class selectPokemon implements MouseListener
 	{
 		Integer pok;
-		public selectPokemon(Integer p)
+		JPanel panel;
+		public selectPokemon(Integer i, JPanel panel)
 		{
-			this.pok = p;
+			this.pok = i;
+			this.panel = panel;
 		}
 
 		@Override
@@ -111,13 +114,20 @@ public class TrocarPokemon extends JFrame {
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
+			float[] HSBColor = new float[3];
+			Color.RGBtoHSB(198, 198, 198, HSBColor);
+			
+			if(jogador.pokemons[pok].isAlive) panel.setBackground(Color.getHSBColor(47, 45, 100));
+			//else panel.setBackground(Color.getHSBColor(Color.RGBtoHSB(198, 198, 198, null)[0], Color.RGBtoHSB(198, 198, 198, null)[1], Color.RGBtoHSB(198, 198, 198, null)[2]));
+			else panel.setBackground(Color.getHSBColor(HSBColor[0], HSBColor[1], HSBColor[2]));
+			
 			
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
+			if(jogador.pokemons[pok].isAlive) panel.setBackground(Color.ORANGE);
+			else panel.setBackground(Color.gray);
 			
 		}
 	}
