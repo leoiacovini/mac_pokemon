@@ -18,6 +18,11 @@ public class Treinador {
 			pokemons[i] = new Pokemon(i);
 		}
 		
+		//Mata o terceiro bulbassauro
+		pokemons[3].HP = 0;
+		pokemons[3].isAlive = false;
+		
+		
 		itens = new Item[5];
 		for (int i = 0; i < 5; i++) {
 			itens[i] = new Item(); 
