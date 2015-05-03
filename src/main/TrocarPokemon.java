@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,12 +12,15 @@ import java.awt.Color;
 
 import javax.swing.JLabel;
 
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class TrocarPokemon extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel panel;
 
@@ -63,11 +65,12 @@ public class TrocarPokemon extends JFrame {
 			panel = new JPanel();
 			if (jogador.pokemons[i].isAlive){
 				panel.setBackground(Color.ORANGE);
+				panel.addMouseListener(new selectPokemon(i, panel));
 				if (i == 0) panel.setBackground(Color.BLUE); 
 			}
 			else panel.setBackground(Color.gray);
 			panel.setBounds(6, y, 438, 69);
-			panel.addMouseListener(new selectPokemon(i, panel));
+			
 			
 			contentPane.add(panel);
 			panel.setLayout(new MigLayout("", "[37px][61px]", "[16px][]"));			
