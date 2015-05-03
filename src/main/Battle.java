@@ -86,23 +86,32 @@ public class Battle extends JFrame {
 			}
 		});
 		
-		lblMeuPokemon = new JLabel(jogador.getPokemonAtivo().nome);
-		contentPane.add(lblMeuPokemon, "cell 0 4");
-		
-		jogadorLife = new JProgressBar();
-		jogadorLife.setStringPainted(true);
-		jogadorLife.setValue(100);
-		contentPane.add(jogadorLife, "cell 0 5");
-		
 		textPane = new JTextPane();
 		textPane.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		textPane.setEditable(false);
 		textPane.setBackground(contentPane.getBackground());
 		contentPane.add(textPane, "cell 3 5 3 4,grow");
+		
+		lblMeuPokemon = new JLabel(jogador.getPokemonAtivo().nome);
+		contentPane.add(lblMeuPokemon, "flowy,cell 0 6,aligny bottom");
+		
+		jogadorLife = new JProgressBar();
+		jogadorLife.setStringPainted(true);
+		jogadorLife.setValue(100);
+		contentPane.add(jogadorLife, "cell 0 6,aligny bottom");
 		contentPane.add(btnAtacar, "cell 0 7");
 		
 		btnItem = new JButton("Item");
 		contentPane.add(btnItem, "cell 2 7");
+		
+		btnItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Mostra Lista de itens
+				ItemsDialog dialog = new ItemsDialog(jogador);
+				dialog.setVisible(true);
+			}
+		});
 		
 		btnTrocarPok = new JButton("Trocar Pok");
 		contentPane.add(btnTrocarPok, "cell 0 8");
@@ -117,8 +126,18 @@ public class Battle extends JFrame {
 		});
 		
 		btnRun = new JButton("Run");
+		
+		btnRun.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Battle.this.dispose();
+				System.exit(0);
+			}
+		});
+		
 		contentPane.add(btnRun, "cell 2 8");
 	}
+	
 	
 	private void setUpBattle() {
 		jogador = new Treinador("Alfredo");

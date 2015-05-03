@@ -1,15 +1,24 @@
 package main;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
+
 public class Pokemon {
 
 	Integer ID;
 	String nome;
 	Integer HP;
 	Integer HPMAX;
-	Ataque[] ataques; // 4 Ataques
+	Ataque[] ataques; // Até 4 Ataques
 	Tipos tipo;
 	boolean isAlive;
 	boolean isActive;
+	BufferedImage spriteFrente;
+	BufferedImage spriteCostas;
 	
 	public Pokemon(int num){
 		this.ID = 1;
@@ -25,6 +34,21 @@ public class Pokemon {
 		ataques[2] = new Ataque(AtackType.RazorLeaf);
 		ataques[3] = new Ataque(AtackType.SeedBomb);
 	}
+	
+	public void setImages(String imageCostas, String imageFrente) {
+		
+		try {
+			URL url = new URL("assets/sprites/costas/" + imageCostas + ".jpg");
+			spriteCostas = ImageIO.read(new File(url.getPath()));
+			
+			url = new URL("assets/sprites/frente/" + imageFrente + ".jpg");
+			spriteFrente = ImageIO.read(new File(url.getPath()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public void atacar(Integer ataqIndex, Pokemon oponente) {
 		
 		// Pegar pokemon oponente
