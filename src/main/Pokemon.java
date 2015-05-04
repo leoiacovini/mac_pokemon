@@ -17,32 +17,25 @@ public class Pokemon {
 	Tipos tipo;
 	boolean isAlive;
 	boolean isActive;
-	BufferedImage spriteFrente;
-	BufferedImage spriteCostas;
+	BufferedImage img;
 	
-	public Pokemon(int num){
-		this.ID = 1;
-		this.nome = "Bulbasaur" + num;
+	public Pokemon(int id, String nome, Tipos type, Ataque[] atks){
+		this.ID = id;
+		this.nome = nome;
 		this.HP = 140;
 		this.HPMAX = 152;
-		this.tipo = Tipos.Grass;
+		this.tipo = type;
 		this.isAlive = true;
 		this.isActive = false;
-		ataques = new Ataque[4];
-		ataques[0] = new Ataque(AtackType.Tackle);
-		ataques[1] = new Ataque(AtackType.LeechSeeds);
-		ataques[2] = new Ataque(AtackType.RazorLeaf);
-		ataques[3] = new Ataque(AtackType.SeedBomb);
+		ataques = atks;
+		setImage();
 	}
 	
-	public void setImages(String imageCostas, String imageFrente) {
+	public void setImage() {
 		
 		try {
-			URL url = new URL("assets/sprites/costas/" + imageCostas + ".jpg");
-			spriteCostas = ImageIO.read(new File(url.getPath()));
-			
-			url = new URL("assets/sprites/frente/" + imageFrente + ".jpg");
-			spriteFrente = ImageIO.read(new File(url.getPath()));
+			URL path = getClass().getResource("sprites/" + ID + ".png");
+			img = ImageIO.read(new File(path.getPath()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

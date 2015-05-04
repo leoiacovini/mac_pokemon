@@ -96,7 +96,6 @@ public class TrocarPokemon extends JFrame {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			
-			System.out.println("ETA" + pok);
 			TrocarPokemon.this.mainBattle.jogador.trocarPokemon(pok);
 			TrocarPokemon.this.mainBattle.updateBattle();
 			TrocarPokemon.this.dispose();

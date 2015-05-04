@@ -44,7 +44,7 @@ public class Battle extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Battle frame = new Battle();
+					Battle frame = new Battle(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +56,10 @@ public class Battle extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Battle() {
+	public Battle(Treinador jog) {
+		
+		jogador = jog;
+		
 		setUpBattle();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -104,7 +107,7 @@ public class Battle extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Mostra Lista de itens
-				ItemsDialog dialog = new ItemsDialog(jogador);
+				ItemsDialog dialog = new ItemsDialog(jogador, Battle.this);
 				dialog.setVisible(true);
 			}
 		});
@@ -132,12 +135,15 @@ public class Battle extends JFrame {
 		});
 		
 		contentPane.add(btnRun, "cell 2 8");
+		
+		updateBattle();
+		
 	}
 	
 	
 	private void setUpBattle() {
-		jogador = new Treinador("Alfredo");
-		AI = new AIController("AKJSHAJK");
+		
+		AI = new AIController("AKJSHAJK", jogador.pokemons);
 	}
 
 	public void updateBattle() {

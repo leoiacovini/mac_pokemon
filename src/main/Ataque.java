@@ -9,6 +9,17 @@ public class Ataque {
 	Integer minDamage;
 	Integer prioridade;	
 	
+	
+	public Ataque(String name, Tipos type, int baseDamage, int prio) {
+		this.nome = name;
+		this.tipo = type;
+		this.prioridade = prio;
+		
+		this.minDamage = baseDamage - 10;
+		this.maxDamage = baseDamage + 10;
+		
+	}
+	
 	public Ataque(AtackType typeAtk)
 	{
 		switch(typeAtk)

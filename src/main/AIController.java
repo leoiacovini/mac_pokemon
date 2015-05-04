@@ -3,8 +3,8 @@ import java.util.Random;
 
 public class AIController extends Treinador {
 
-	public AIController(String nome) {
-		super(nome);
+	public AIController(String nome, Pokemon[] poks) {
+		super(nome, poks);
 		this.nome = "AI";
 	}
 	

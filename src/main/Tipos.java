@@ -9,7 +9,7 @@ public enum Tipos {
 	Flying,
 	Grass,
 	Poison,
-	Eletric,
+	Electric,
 	Ground,
 	Psychic,
 	Rock,
@@ -19,5 +19,6 @@ public enum Tipos {
 	Ghost,
 	Dark,
 	Steel,
-	
+	Unknown,
+	Shadow,
 }

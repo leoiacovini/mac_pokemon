@@ -9,18 +9,15 @@ public class Treinador {
 	String nome;
 	Integer ID;
 	
-	public Treinador(String nome) {
+	public Treinador(String nome, Pokemon[] pks) {
 		this.nome = nome;
 		this.ID = Treinador.baseID++;
 		
-		pokemons = new Pokemon[6];
-		for (int i = 0; i < 6; i++) {
-			pokemons[i] = new Pokemon(i);
-		}
+		this.pokemons = pks;
 		
 		//Mata o terceiro bulbassauro
-		pokemons[3].HP = 0;
-		pokemons[3].isAlive = false;
+//		pokemons[3].HP = 0;
+//		pokemons[3].isAlive = false;
 		
 		
 		itens = new Item[5];
