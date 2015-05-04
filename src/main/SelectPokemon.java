@@ -188,9 +188,11 @@ public class SelectPokemon extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Treinador jogador = new Treinador("Alfredo", selectedPokemons);
-				Battle mainBattle = new Battle(jogador);
-				mainBattle.updateBattle();
-				mainBattle.setVisible(true);
+				Teste mapa = new Teste(jogador);
+				mapa.setVisible(true);
+//				Battle mainBattle = new Battle(jogador);
+//				mainBattle.updateBattle();
+//				mainBattle.setVisible(true);
 				SelectPokemon.this.dispose();
 			}
 		});
