@@ -157,8 +157,10 @@ public class Battle extends JFrame {
 	
 	
 	private void setUpBattle() {
-		
-		AI = new AIController("AKJSHAJK", jogador.pokemons);
+		Pokemon[] AIPoks = new Pokemon[1];
+		AIPoks[0] = Pokedex.getRandomPokemon();
+		AI = new AIController("Jose de Maria", AIPoks);
+		//AI = new AIController("AKJSHAJK", jogador.pokemons);
 	}
 
 	public void updateBattle() {

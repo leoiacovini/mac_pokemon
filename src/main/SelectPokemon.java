@@ -82,7 +82,7 @@ public class SelectPokemon extends JFrame {
 			public void run() {
 				DBReader.queryPokemons();
 				poks = DBReader.poks;
-				
+				Pokedex.pokemons = poks;
 				DefaultListModel<String> itens = new DefaultListModel<String>();
 				
 				for (int i = 0; i < 151; i++) {
@@ -165,7 +165,7 @@ public class SelectPokemon extends JFrame {
 				if (SelectPokemon.this.i <= 5) {
 					int index = list.getSelectedIndex();
 					Pokemon pok = poks[index];
-					selectedPokemons[SelectPokemon.this.i] = pok;
+					selectedPokemons[SelectPokemon.this.i] = new Pokemon(index+1, pok.nome, pok.tipo, pok.ataques);
 					lblPokemon[SelectPokemon.this.i].setText("");
 					lblPokemon[SelectPokemon.this.i].setIcon(new ImageIcon(pok.img));
 					SelectPokemon.this.i++;

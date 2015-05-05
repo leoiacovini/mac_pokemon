@@ -10,6 +10,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.sun.org.glassfish.gmbal.ManagedAttribute;
+
 public class AtaquesDialog extends JDialog {
 
 	/**
@@ -82,12 +84,45 @@ public class AtaquesDialog extends JDialog {
 		
 		public void actionPerformed(ActionEvent e)
 		{
-			mainBattle.jogador.atacarWithPokemon(atkIndex, mainBattle.AI.getPokemonAtivo());
-			int HealthPoint = (int)(((double)mainBattle.AI.getPokemonAtivo().HP/mainBattle.AI.getPokemonAtivo().HPMAX) * 100);
-			mainBattle.AILife.setValue(HealthPoint);
-			mainBattle.textPane.setText( mainBattle.textPane.getText() + "\nVocê usou " + mainBattle.jogador.getPokemonAtivo().ataques[atkIndex].nome);
+			confront(atkIndex);
+		}
+		
+		private void confront(int playerIndex) {
+			
+			Ataque playerAtaque = mainBattle.jogador.getPokemonAtivo().ataques[playerIndex];
+			Actions AIAction = mainBattle.AI.generateAction();
+			if (AIAction == Actions.Atacar) {
+				Ataque AIAtaque = mainBattle.AI.generateAtack();
+				if (playerAtaque.prioridade >= AIAtaque.prioridade) {
+					mainBattle.jogador.atacarWithPokemon(atkIndex, mainBattle.AI.getPokemonAtivo());
+					int HealthPoint = (int)(((double)mainBattle.AI.getPokemonAtivo().HP/mainBattle.AI.getPokemonAtivo().HPMAX) * 100);
+					mainBattle.AILife.setValue(HealthPoint);
+					mainBattle.textPane.setText( mainBattle.textPane.getText() + "\nVocê usou " + mainBattle.jogador.getPokemonAtivo().ataques[atkIndex].nome);
+					if (HealthPoint > 0) {
+						mainBattle.AI.atacarWithPokemon(AIAtaque.ID, mainBattle.jogador.getPokemonAtivo());
+						mainBattle.textPane.setText( mainBattle.textPane.getText() + "\n" + mainBattle.AI.getPokemonAtivo().nome + " usou " + AIAtaque.nome);
+					}
+					
+				} else {
+					
+					mainBattle.AI.atacarWithPokemon(AIAtaque.ID, mainBattle.jogador.getPokemonAtivo());
+					mainBattle.textPane.setText( mainBattle.textPane.getText() + "\n" + mainBattle.AI.getPokemonAtivo().nome + " usou " + AIAtaque.nome);
+					
+					if (mainBattle.jogador.getPokemonAtivo().HP > 0) {
+						mainBattle.jogador.atacarWithPokemon(atkIndex, mainBattle.AI.getPokemonAtivo());
+						int HealthPoint = (int)(((double)mainBattle.AI.getPokemonAtivo().HP/mainBattle.AI.getPokemonAtivo().HPMAX) * 100);
+						mainBattle.AILife.setValue(HealthPoint);
+						mainBattle.textPane.setText( mainBattle.textPane.getText() + "\nVocê usou " + mainBattle.jogador.getPokemonAtivo().ataques[atkIndex].nome);
+					}
+				}
+			} else if (AIAction == Actions.Item) {
+				
+			}
+		
+			mainBattle.updateBattle();
 			AtaquesDialog.this.dispose();
 		}
+		
 	}
 	
 }

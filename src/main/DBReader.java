@@ -61,6 +61,7 @@ public class DBReader {
 	        	   
 	        	   String atkName = tp.getString("identifier");
 	        	   int atkPower = tp.getInt("power");
+	        	   
 	        	   int atkPriority = tp.getInt("priority");
 	        	   
 	        	   // Query For Atk Type
