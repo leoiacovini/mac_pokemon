@@ -10,7 +10,7 @@ public class Pokedex {
 	{
 		Random random = new Random();
 		int index = random.nextInt(150);
-		return new Pokemon(index+1, pokemons[index].nome, pokemons[index].tipo, pokemons[index].ataques );
+		return new Pokemon(index+1, pokemons[index].nome, pokemons[index].tipo, pokemons[index].ataques, pokemons[index].HPMAX);
 		
 	}
 }

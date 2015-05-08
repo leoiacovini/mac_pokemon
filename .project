@@ -14,4 +14,21 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>OldWomanWalk.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/bin/main/OldWomanWalk.png</locationURI>
+		</link>
+		<link>
+			<name>grass.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/bin/main/grass.png</locationURI>
+		</link>
+		<link>
+			<name>sprites</name>
+			<type>2</type>
+			<locationURI>PROJECT_LOC/bin/main/sprites</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

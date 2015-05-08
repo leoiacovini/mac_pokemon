@@ -38,7 +38,7 @@ public class Battle extends JFrame {
 	
 	public Treinador jogador;
 	public AIController AI;
-	public Teste mapa;
+	public MapaFrame mapa;
 	
 	public JTextPane textPane;
 	private JLabel lblImageAi;
@@ -66,12 +66,13 @@ public class Battle extends JFrame {
 	 * Create the frame.
 	 */
 	public Battle(Treinador jog) {
+		setResizable(false);
 		
 		jogador = jog;
 		
 		setUpBattle();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 388);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -88,7 +89,7 @@ public class Battle extends JFrame {
 		btnAtacar = new JButton("Atacar");
 		btnAtacar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AtaquesDialog ataquesDiag = new AtaquesDialog(jogador.getPokemonAtivo().ataques);
+				AtaquesDialog ataquesDiag = new AtaquesDialog(jogador.getPokemonAtivo().ataques, Battle.this);
 				ataquesDiag.mainBattle = Battle.this;
 				ataquesDiag.setVisible(true);
 			}

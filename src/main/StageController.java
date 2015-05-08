@@ -20,9 +20,9 @@ public class StageController extends JPanel implements ActionListener {
 	Pawn player;
 	Map mapa;
 	Treinador jogador;
-	Teste mainTeste;
+	MapaFrame mainTeste;
 	//INIT
-	public StageController(Teste T)
+	public StageController(MapaFrame T)
 	{
 		this.jogador = T.jogador;
 		this.mainTeste = T;

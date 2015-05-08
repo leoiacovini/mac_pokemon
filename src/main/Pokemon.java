@@ -18,17 +18,22 @@ public class Pokemon {
 	boolean isAlive;
 	boolean isActive;
 	BufferedImage img;
+	int numAtaques;
 	
-	public Pokemon(int id, String nome, Tipos type, Ataque[] atks){
+	public Pokemon(int id, String nome, Tipos type, Ataque[] atks, int HPMAX){
 		this.ID = id;
 		this.nome = nome;
-		this.HP = 140;
-		this.HPMAX = 152;
+		this.HP = HPMAX;
+		this.HPMAX = HPMAX;
 		this.tipo = type;
 		this.isAlive = true;
 		this.isActive = false;
 		ataques = atks;
+		int i;
+		for(i = 0; i <= 3 && atks[i] != null; i++); 
 		setImage();
+		this.numAtaques = i;
+		System.out.println(i);
 	}
 	
 	public void setImage() {

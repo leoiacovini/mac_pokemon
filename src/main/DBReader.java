@@ -42,26 +42,17 @@ public class DBReader {
 	           
 	           Tipos pkmType = Helpers.typeFromString(typeName);
 	           
-	           System.out.println("Pokemon Type Done");
 	           
 	           // Query for the moves
-	           
 	           hb = q.executeQuery("SELECT move_id FROM pokemon_moves WHERE pokemon_id = " + id + " AND version_group_id = 1");
-	           
 	           int j = 0;
-	           
 	           Ataque atks[] = new Ataque[4];
-	           
 	           int lastMoveID = 0; 
-	           
 	           while(hb.next() && j <= 3) {
 	        	   int moveID = hb.getInt("move_id");
-	        	   
 	        	   tp = t.executeQuery("SELECT * FROM moves WHERE id = " + moveID);
-	        	   
 	        	   String atkName = tp.getString("identifier");
 	        	   int atkPower = tp.getInt("power");
-	        	   
 	        	   int atkPriority = tp.getInt("priority");
 	        	   
 	        	   // Query For Atk Type
@@ -72,10 +63,7 @@ public class DBReader {
 	        	   
 		           Tipos atkType = Helpers.typeFromString(queryAtkResult.getString("identifier"));
 		           System.out.println("Move type: " + atkType.toString());
-		           //
-		           
 		           atks[j] = new Ataque(atkName, atkType ,atkPower, atkPriority);
-		           
 	        	   if (moveID != lastMoveID) {
 	        		   j++;
 	        	   }
@@ -83,11 +71,24 @@ public class DBReader {
 	           }
 	           
 	           
-	           poks[i] = new Pokemon(id, name, pkmType, atks);
+	           // Query For Pokemon HP
+	           
+	           Statement hpQuery = c.createStatement();
+	           ResultSet hpStat = hpQuery.executeQuery("SELECT * FROM pokemon_stats WHERE pokemon_id = " + id +" AND stat_id = 1 LIMIT 1");  
+	           int pokHPMAX = hpStat.getInt("base_stat") * 3;
+	           
+	           poks[i] = new Pokemon(id, name, pkmType, atks, pokHPMAX);
 	           
 	           i++;
 	           
+	           t.close();
+	           tp.close();
+	           q.close();
+	           hb.close();
+	           hpQuery.close();
+	           hpStat.close();
 	        } 
+	        
 	        rs.close();
 	        stmt.close();
 	        c.close();

@@ -63,7 +63,7 @@ public class SelectPokemon extends JFrame {
 	public SelectPokemon() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 378);
+		setBounds(100, 100, 504, 380);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -165,7 +165,7 @@ public class SelectPokemon extends JFrame {
 				if (SelectPokemon.this.i <= 5) {
 					int index = list.getSelectedIndex();
 					Pokemon pok = poks[index];
-					selectedPokemons[SelectPokemon.this.i] = new Pokemon(index+1, pok.nome, pok.tipo, pok.ataques);
+					selectedPokemons[SelectPokemon.this.i] = new Pokemon(index+1, pok.nome, pok.tipo, pok.ataques, pok.HPMAX);
 					lblPokemon[SelectPokemon.this.i].setText("");
 					lblPokemon[SelectPokemon.this.i].setIcon(new ImageIcon(pok.img));
 					SelectPokemon.this.i++;
@@ -188,7 +188,7 @@ public class SelectPokemon extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Treinador jogador = new Treinador("Alfredo", selectedPokemons);
-				Teste mapa = new Teste(jogador);
+				MapaFrame mapa = new MapaFrame(jogador);
 				mapa.setVisible(true);
 //				Battle mainBattle = new Battle(jogador);
 //				mainBattle.updateBattle();

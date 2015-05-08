@@ -26,7 +26,7 @@ public class AtaquesDialog extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			AtaquesDialog dialog = new AtaquesDialog(null);
+			AtaquesDialog dialog = new AtaquesDialog(null, null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -37,9 +37,10 @@ public class AtaquesDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public AtaquesDialog(final Ataque ataques[]) {
+	public AtaquesDialog(final Ataque ataques[], Battle battle) {
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 340, 450, 60);
+		this.mainBattle = battle;
+		setBounds(100, 340, 500, 60);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -47,31 +48,35 @@ public class AtaquesDialog extends JDialog {
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton okButton = new JButton(ataques[0].nome);
-				okButton.setActionCommand("OK");
-				okButton.addActionListener(new ATK(0));
-				buttonPane.add(okButton);
+			
+			for (int i = 0; i < mainBattle.jogador.getPokemonAtivo().numAtaques ; i++) {
+				{
+					JButton atkButton = new JButton(mainBattle.jogador.getPokemonAtivo().ataques[i].nome);
+					atkButton.addActionListener(new ATK(i));
+					buttonPane.add(atkButton);
+				}
 			}
-			{
-				JButton cancelButton = new JButton(ataques[1].nome);
-				cancelButton.setActionCommand("Cancel");
-				cancelButton.addActionListener(new ATK(1));
-				buttonPane.add(cancelButton);
-			}
-			{
-				JButton cancelButton = new JButton(ataques[2].nome);
-				cancelButton.setActionCommand("Cancel");
-				cancelButton.addActionListener(new ATK(2));
-				buttonPane.add(cancelButton);
-			}
-			{
-				JButton cancelButton = new JButton(ataques[3].nome);
-				cancelButton.setActionCommand("Cancel");
-				cancelButton.addActionListener(new ATK(3));
-				buttonPane.add(cancelButton);
-			}
+			
+//			{
+//				JButton cancelButton = new JButton(ataques[1].nome);
+//				cancelButton.setActionCommand("Cancel");
+//				cancelButton.addActionListener(new ATK(1));
+//				buttonPane.add(cancelButton);
+//			}
+//			{
+//				JButton cancelButton = new JButton(ataques[2].nome);
+//				cancelButton.setActionCommand("Cancel");
+//				cancelButton.addActionListener(new ATK(2));
+//				buttonPane.add(cancelButton);
+//			}
+//			{
+//				JButton cancelButton = new JButton(ataques[3].nome);
+//				cancelButton.setActionCommand("Cancel");
+//				cancelButton.addActionListener(new ATK(3));
+//				buttonPane.add(cancelButton);
+//			}
 		}
 	}
 	class ATK implements ActionListener
