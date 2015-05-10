@@ -21,19 +21,6 @@ public class ItemsDialog extends JDialog {
 
 	public Treinador jogador;
 	public Battle mainBattle;
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			ItemsDialog dialog = new ItemsDialog(null, null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.

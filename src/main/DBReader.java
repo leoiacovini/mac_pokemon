@@ -31,7 +31,6 @@ public class DBReader {
 	           String  name = rs.getString("identifier");
 	           
 	           // Query for the pokemon type
-	           System.out.println("Pokemon Name: " + name);
 	           Statement q = c.createStatement();
 	           ResultSet hb = q.executeQuery("SELECT type_id FROM pokemon_types WHERE pokemon_id = " + id + " ORDER BY ROWID ASC LIMIT 1");
 	           int typeID = hb.getInt("type_id");
@@ -56,13 +55,11 @@ public class DBReader {
 	        	   int atkPriority = tp.getInt("priority");
 	        	   
 	        	   // Query For Atk Type
-	        	   System.out.println("Move name: " + atkName);
 	        	   int atkTypeID = tp.getInt("type_id");
 	        	   Statement statement = c.createStatement();
 		           ResultSet queryAtkResult = statement.executeQuery("SELECT * FROM types WHERE id = " + atkTypeID + " ORDER BY ROWID ASC LIMIT 1");
 	        	   
 		           Tipos atkType = Helpers.typeFromString(queryAtkResult.getString("identifier"));
-		           System.out.println("Move type: " + atkType.toString());
 		           atks[j] = new Ataque(atkName, atkType ,atkPower, atkPriority);
 	        	   if (moveID != lastMoveID) {
 	        		   j++;

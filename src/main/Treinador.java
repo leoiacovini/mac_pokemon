@@ -15,19 +15,20 @@ public class Treinador {
 		
 		this.pokemons = pks;
 		
-		//Mata o terceiro bulbassauro
-//		pokemons[3].HP = 0;
-//		pokemons[3].isAlive = false;
-		
-		
 		itens = new Item[5];
 		for (int i = 0; i < 5; i++) {
 			itens[i] = new Item(); 
 		}
 	}
 	
-	public void runFromBattle() {
-		// Termina a batalha
+	public boolean playerDidLose() {
+		
+		for (Pokemon pokemon :  pokemons) {
+			if (pokemon != null && pokemon.isAlive) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public void atacarWithPokemon(Integer ataqIndex, Pokemon oponente) {

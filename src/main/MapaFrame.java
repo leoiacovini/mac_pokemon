@@ -21,18 +21,7 @@ public class MapaFrame extends JFrame {
 	 * Launch the application.
 	 */
 	StageController stage;
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MapaFrame frame = new MapaFrame(null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	public MapaFrame(Treinador jog) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

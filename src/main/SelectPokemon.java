@@ -77,21 +77,7 @@ public class SelectPokemon extends JFrame {
 		scrollPane.setBackground(Color.RED);
 		contentPane.add(scrollPane, "cell 0 0 8 1,grow");
 		
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				DBReader.queryPokemons();
-				poks = DBReader.poks;
-				Pokedex.pokemons = poks;
-				DefaultListModel<String> itens = new DefaultListModel<String>();
-				
-				for (int i = 0; i < 151; i++) {
-					itens.addElement(poks[i].nome);
-				}		
-				
-				list.setModel(itens);
-			}
-		}).run();
+		
 		
 		System.out.println("Loading");
 		
@@ -198,7 +184,21 @@ public class SelectPokemon extends JFrame {
 		});
 		
 		contentPane.add(btnDone, "cell 9 1");
-		
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				DBReader.queryPokemons();
+				poks = DBReader.poks;
+				Pokedex.pokemons = poks;
+				DefaultListModel<String> itens = new DefaultListModel<String>();
+				
+				for (int i = 0; i < 151; i++) {
+					itens.addElement(poks[i].nome);
+				}		
+				
+				list.setModel(itens);
+			}
+		}).start();
 	}
 	
 

@@ -43,24 +43,6 @@ public class Battle extends JFrame {
 	public JTextPane textPane;
 	private JLabel lblImageAi;
 	private JLabel lblImage;
-	
-	
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Battle frame = new Battle(null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -161,10 +143,20 @@ public class Battle extends JFrame {
 		Pokemon[] AIPoks = new Pokemon[1];
 		AIPoks[0] = Pokedex.getRandomPokemon();
 		AI = new AIController("Jose de Maria", AIPoks);
-		//AI = new AIController("AKJSHAJK", jogador.pokemons);
 	}
 
 	public void updateBattle() {
+		if (jogador.playerDidLose()) {
+			System.out.println("O Jogador perdeu");
+			mapa.setVisible(true);
+			Battle.this.dispose();
+			return;
+		} else if (AI.playerDidLose()) {
+			System.out.println("O AI perdeu");
+			mapa.setVisible(true);
+			Battle.this.dispose();
+			return;
+		}
 		lblMeuPokemon.setText(jogador.getPokemonAtivo().nome);
 		lblAIPokemon.setText(AI.getPokemonAtivo().nome);
 		int HealthPoint = jogador.getPokemonAtivo().getPercentageLifePoints();

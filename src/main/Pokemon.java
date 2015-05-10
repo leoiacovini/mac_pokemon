@@ -33,7 +33,6 @@ public class Pokemon {
 		for(i = 0; i <= 3 && atks[i] != null; i++); 
 		setImage();
 		this.numAtaques = i;
-		System.out.println(i);
 	}
 	
 	public void setImage() {
