@@ -126,8 +126,7 @@ public class Battle extends JFrame {
 		btnRun.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				mapa.setVisible(true);
-				Battle.this.dispose();
+				endBattle();
 			}
 		});
 		
