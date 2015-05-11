@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.net.URLDecoder;
 
 import javax.imageio.ImageIO;
 
@@ -39,6 +40,7 @@ public class Pokemon {
 		
 		try {
 			URL path = getClass().getResource("sprites/" + ID + ".png");
+			path = new URL(URLDecoder.decode(path.toString(), "UTF-8"));
 			img = ImageIO.read(new File(path.getPath()));
 		} catch (IOException e) {
 			e.printStackTrace();
