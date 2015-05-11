@@ -53,9 +53,11 @@ public class Pokemon {
 		Integer max = ataques[ataqIndex].maxDamage;
 		Integer min = ataques[ataqIndex].minDamage;
 		
-		Integer dano = (int) ((Math.random() * (max - min)) +  min);
+		double dano = ((Math.random() * (max - min)) +  min);
 		
-		oponente.levarDano(dano);
+		dano *= Helpers.calcularDamageModfier(ataques[ataqIndex].tipo, oponente.tipo);
+		
+		oponente.levarDano((int) dano);
 		
 	}
 	
