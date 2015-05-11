@@ -1,7 +1,5 @@
 package main;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -11,6 +9,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 
 import java.awt.event.ActionListener;
@@ -147,16 +146,19 @@ public class Battle extends JFrame {
 
 	public void updateBattle() {
 		if (jogador.playerDidLose()) {
+			JOptionPane.showMessageDialog(this, "Você Perdeu");
 			System.out.println("O Jogador perdeu");
 			mapa.setVisible(true);
 			Battle.this.dispose();
 			return;
 		} else if (AI.playerDidLose()) {
+			JOptionPane.showMessageDialog(this, "Você Venceu");
 			System.out.println("O AI perdeu");
 			mapa.setVisible(true);
 			Battle.this.dispose();
 			return;
 		}
+		
 		lblMeuPokemon.setText(jogador.getPokemonAtivo().nome);
 		lblAIPokemon.setText(AI.getPokemonAtivo().nome);
 		int HealthPoint = jogador.getPokemonAtivo().getPercentageLifePoints();
@@ -167,6 +169,11 @@ public class Battle extends JFrame {
 		lblImage.setIcon(new ImageIcon(jogador.getPokemonAtivo().img));
 		lblImageAi.setText("");
 		lblImageAi.setIcon(new ImageIcon(AI.getPokemonAtivo().img));
+		
+		if (!jogador.getPokemonAtivo().isAlive) {
+			TrocarPokemon trocarFrame = new TrocarPokemon(Battle.this, Battle.this.jogador);
+			trocarFrame.setVisible(true);
+		}
 	}
 	
 }

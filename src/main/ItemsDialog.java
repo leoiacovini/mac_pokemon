@@ -36,16 +36,13 @@ public class ItemsDialog extends JDialog {
 		
 		Item itens[] = jogador.itens;
 		
-		for (Item item : itens) {
+		for (final Item item : itens) {
 			JButton butao = new JButton(item.nome);
 			
 			butao.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					jogador.getPokemonAtivo().HP += 20;
-					if (jogador.getPokemonAtivo().HP > jogador.getPokemonAtivo().HPMAX) {
-						jogador.getPokemonAtivo().HP = jogador.getPokemonAtivo().HPMAX;
-					}
+					jogador.getPokemonAtivo().usarItem(item);
 					mainBattle.updateBattle();
 					ItemsDialog.this.dispose();
 				}

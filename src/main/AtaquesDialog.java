@@ -10,8 +10,6 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.sun.org.glassfish.gmbal.ManagedAttribute;
-
 public class AtaquesDialog extends JDialog {
 
 	/**
