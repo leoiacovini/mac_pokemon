@@ -56,10 +56,10 @@ public class StageController extends JPanel implements ActionListener {
 		player.update(elapsedTime);
 							
 		previousTime = currentTime;
-		if (player.getX() > 100 && !player.isInBattle)
+		if (player.getX() > 150 && !player.isInBattle)
 		{
 			player.isInBattle = true;
-			if(Math.random() < 2)
+			if(Math.random() < 0.9)
 			{
 				Battle battle = new Battle(jogador);
 				battle.setVisible(true);
