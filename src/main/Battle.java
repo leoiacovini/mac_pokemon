@@ -150,14 +150,12 @@ public class Battle extends JFrame {
 		if (jogador.playerDidLose()) {
 			JOptionPane.showMessageDialog(this, "Você Perdeu");
 			System.out.println("O Jogador perdeu");
-			mapa.setVisible(true);
-			Battle.this.dispose();
+			endBattle();
 			return;
 		} else if (AI.playerDidLose()) {
 			JOptionPane.showMessageDialog(this, "Você Venceu");
 			System.out.println("O AI perdeu");
-			mapa.setVisible(true);
-			Battle.this.dispose();
+			endBattle();
 			return;
 		}
 		
@@ -176,6 +174,16 @@ public class Battle extends JFrame {
 			TrocarPokemon trocarFrame = new TrocarPokemon(Battle.this, Battle.this.jogador);
 			trocarFrame.setVisible(true);
 		}
+	}
+	
+	public void endBattle() {
+		
+		for(Pokemon pk : jogador.pokemons) {
+			pk.HP = pk.HPMAX;
+			pk.isAlive = true;
+		}
+		mapa.setVisible(true);
+		Battle.this.dispose();
 	}
 	
 }
