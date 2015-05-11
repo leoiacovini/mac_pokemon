@@ -38,9 +38,7 @@ public class DBReader {
 	           Statement t = c.createStatement();
 	           ResultSet tp = t.executeQuery("SELECT name FROM type_names WHERE type_id = " + typeID + " AND local_language_id = 9");
 	           String typeName = tp.getString("name");
-	           
 	           Tipos pkmType = Helpers.typeFromString(typeName);
-	           
 	           
 	           // Query for the moves
 	           hb = q.executeQuery("SELECT move_id FROM pokemon_moves WHERE pokemon_id = " + id + " AND version_group_id = 1");

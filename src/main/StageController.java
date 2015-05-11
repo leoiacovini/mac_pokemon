@@ -59,7 +59,7 @@ public class StageController extends JPanel implements ActionListener {
 		if (player.getX() > 100 && !player.isInBattle)
 		{
 			player.isInBattle = true;
-			if(Math.random() < 0.4)
+			if(Math.random() < 2)
 			{
 				Battle battle = new Battle(jogador);
 				battle.setVisible(true);

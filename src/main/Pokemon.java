@@ -49,11 +49,13 @@ public class Pokemon {
 	public void atacar(Integer ataqIndex, Pokemon oponente) {
 		
 		// Pegar pokemon oponente
-		// Caclular Dano
+		// Calcular Dano
 		Integer max = ataques[ataqIndex].maxDamage;
 		Integer min = ataques[ataqIndex].minDamage;
 		
 		double dano = ((Math.random() * (max - min)) +  min);
+		
+		System.out.println("Oponente: " + oponente.tipo);
 		
 		dano *= Helpers.calcularDamageModfier(ataques[ataqIndex].tipo, oponente.tipo);
 		
