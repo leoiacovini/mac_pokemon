@@ -8,6 +8,7 @@ public class Treinador {
 	Item itens[]; // X Itens
 	String nome;
 	Integer ID;
+	public boolean isInBattle = false;
 	
 	public Treinador(String nome, Pokemon[] pks) {
 		this.nome = nome;

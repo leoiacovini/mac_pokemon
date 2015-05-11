@@ -182,6 +182,7 @@ public class Battle extends JFrame {
 			pk.HP = pk.HPMAX;
 			pk.isAlive = true;
 		}
+		jogador.isInBattle = false;
 		mapa.setVisible(true);
 		Battle.this.dispose();
 	}

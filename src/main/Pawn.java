@@ -34,7 +34,7 @@ public class Pawn extends JPanel{
 	private int u, v; //posicao relativa (u,v) no sprite p.e. de (0;0) a (spriteHeight; spriteWidth) � o primeiro sprite
 	Direcao dir = Direcao.Down;
 	Direcao anterior = Direcao.Down;
-	public boolean isInBattle = false;
+	
 	private long framePeriod;
 	
 	private long time = 0;
